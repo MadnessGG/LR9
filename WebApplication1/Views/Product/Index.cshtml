@@ -1,0 +1,22 @@
+﻿namespace WebApplication1.Views.Product
+{
+<!-- Views/Product/Index.cshtml -->
+@using WebApplication1.Models
+@model List<Product>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.ID</td>
+            <td>@product.Name</td>
+            <td>@product.Price</td>
+        </tr>
+    }
+</table>
+}

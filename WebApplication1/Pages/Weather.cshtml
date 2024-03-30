@@ -1,0 +1,29 @@
+﻿@page "/weather"
+@using WebApplication1.Services // Простір імен для WeatherService
+@using WebApplication1.Models // Простір імен для WeatherData
+
+@inject WeatherService WeatherService
+
+<h1>Current Weather</h1>
+
+@{
+    WeatherData weatherData = null;
+
+    async Task LoadWeatherDataAsync()
+    {
+        weatherData = await WeatherService.GetWeatherDataAsync("Odesa", "28118d4223e5628b9a5b88bce044efae");
+    }
+
+    // Викликаємо метод завантаження даних погоди при першому завантаженні сторінки
+    LoadWeatherDataAsync().GetAwaiter().GetResult();
+}
+
+@if (weatherData != null)
+{
+    <p>City: @weatherData.Name</p>
+    <p>Temperature: @weatherData.Main.Temp</p>
+}
+else
+{
+    <p>Weather data is not available.</p>
+}
